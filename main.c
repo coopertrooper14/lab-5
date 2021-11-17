@@ -16,16 +16,12 @@ unsigned int data;
 
 void main(void) {
     
-    LCD_Init();
-    initUSART4();
-    //LCD_sendbyte(0b10001111, 0);
-    //    __delay_us(40);
-    
+    LCD_Init();  //Initialise LCD screen
+    initUSART4();  //Initialise serial monitor
+
     while (1){
-        data = getCharSerial4();
-        LCD_sendbyte(data, 1);
-    //    __delay_ms(100); //Enough delay to read text moving along
-    //    LCD_sendbyte(0b00011000, 0);
-    //    __delay_ms(100);
+        data = getCharSerial4();  //Set data variable to the most recent character typed
+        sendCharSerial4(data);  //Send data to serial monitor
+        LCD_sendbyte(data, 1);  //Send data to LCD
     }
 }

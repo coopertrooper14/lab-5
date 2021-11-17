@@ -24378,13 +24378,9 @@ void main(void) {
     LCD_Init();
     initUSART4();
 
-
-
     while (1){
         data = getCharSerial4();
+        sendCharSerial4(data);
         LCD_sendbyte(data, 1);
-
-
-
     }
 }

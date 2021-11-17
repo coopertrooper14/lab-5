@@ -9,6 +9,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24
 [; ;./serial.h: 24: char getCharSerial4(void);
 [v _getCharSerial4 `(uc ~T0 @X0 0 ef ]
+"25
+[; ;./serial.h: 25: void sendCharSerial4(char charToSend);
+[v _sendCharSerial4 `(v ~T0 @X0 0 ef1`uc ]
 "19 ./LCD.h
 [; ;./LCD.h: 19: void LCD_sendbyte(unsigned char Byte, char type);
 [v _LCD_sendbyte `(v ~T0 @X0 0 ef2`uc`uc ]
@@ -2038,23 +2041,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 "20
 [; ;main.c: 20:     initUSART4();
 [e ( _initUSART4 ..  ]
-"24
-[; ;main.c: 24:     while (1){
+"22
+[; ;main.c: 22:     while (1){
 [e :U 2023 ]
 {
-"25
-[; ;main.c: 25:         data = getCharSerial4();
+"23
+[; ;main.c: 23:         data = getCharSerial4();
 [e = _data -> ( _getCharSerial4 ..  `ui ]
-"26
-[; ;main.c: 26:         LCD_sendbyte(data, 1);
+"24
+[; ;main.c: 24:         sendCharSerial4(data);
+[e ( _sendCharSerial4 (1 -> _data `uc ]
+"25
+[; ;main.c: 25:         LCD_sendbyte(data, 1);
 [e ( _LCD_sendbyte (2 , -> _data `uc -> -> 1 `i `uc ]
-"30
-[; ;main.c: 30:     }
+"26
+[; ;main.c: 26:     }
 }
 [e :U 2022 ]
 [e $U 2023  ]
 [e :U 2024 ]
-"31
-[; ;main.c: 31: }
+"27
+[; ;main.c: 27: }
 [e :UE 2021 ]
 }
