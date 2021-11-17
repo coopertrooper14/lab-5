@@ -1,5 +1,6 @@
 #include <xc.h>
 #include "serial.h"
+#include "LCD.h"
 
 void initUSART4(void) {
 
@@ -34,6 +35,11 @@ void sendCharSerial4(char charToSend) {
 //function to send a string over the serial interface
 void sendStringSerial4(char *string){
 	//Hint: look at how you did this for the LCD lab 
+    //Count through each letter of the string using pointer and display each letter.
+    while(*string != 0){
+        sendCharSerial4(*string++);
+       // count++;
+    }
 }
 
 

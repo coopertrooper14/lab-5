@@ -81,9 +81,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29884
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 29884: extern volatile TRISEbits_t TRISEbits __attribute__((address(0xF85)));
 [v _TRISEbits `VS1386 ~T0 @X0 0 e@3973 ]
-"23 ./LCD.h
-[; ;./LCD.h: 23: void LCD_scroll(void);
-[v _LCD_scroll `(v ~T0 @X0 0 ef ]
 "54 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\proc\pic18f67k40.h: 54: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2364,9 +2361,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "152
 [; ;LCD.c: 152:         LCD_sendbyte(*string++, 1);
 [e ( _LCD_sendbyte (2 , -> *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x `uc -> -> 1 `i `uc ]
-"153
-[; ;LCD.c: 153:         count++;
-[e ++ _count -> -> 1 `i `ui ]
 "154
 [; ;LCD.c: 154:     }
 }
@@ -2379,20 +2373,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LCD.c: 156:     unsigned int i = 0;
 [v _i `ui ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `ui ]
-"157
-[; ;LCD.c: 157:     for (i=0; i<(count-16); i++) {LCD_scroll();}
-{
-[e = _i -> -> 0 `i `ui ]
-[e $U 2043  ]
-[e :U 2040 ]
-{
-[e ( _LCD_scroll ..  ]
-}
-[e ++ _i -> -> 1 `i `ui ]
-[e :U 2043 ]
-[e $ < _i - _count -> -> 16 `i `ui 2040  ]
-[e :U 2041 ]
-}
 "158
 [; ;LCD.c: 158: }
 [e :UE 2036 ]
@@ -2416,5 +2396,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000000.0 `ul ]
 "169
 [; ;LCD.c: 169: }
-[e :UE 2044 ]
+[e :UE 2040 ]
 }

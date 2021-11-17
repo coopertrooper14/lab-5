@@ -24338,18 +24338,6 @@ void LCD_clear(void);
 void ADC2String(char *buf, unsigned int number);
 # 10 "main.c" 2
 
-# 1 "./ADC.h" 1
-
-
-
-
-
-
-
-void ADC_init(void);
-unsigned int ADC_getval(void);
-# 11 "main.c" 2
-
 # 1 "./serial.h" 1
 # 13 "./serial.h"
 volatile char EUSART4RXbuf[20];
@@ -24378,14 +24366,12 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 12 "main.c" 2
+# 11 "main.c" 2
 
 
 
 
 unsigned int data;
-unsigned int int_part;
-unsigned int frac_part;
 
 void main(void) {
 
@@ -24393,20 +24379,10 @@ void main(void) {
     initUSART4();
     ADC_init();
 
-    char buf[10];
-# 36 "main.c"
-    while (1) {
+    while (1){
 
-        int_part=ADC_getval()/77;
-        frac_part=(ADC_getval()*100)/77 - int_part*100;
-        sprintf(buf,"%d.%02d",int_part,frac_part);
-        LCD_sendstring(buf);
-        sendStringSerial4(buf);
 
-        _delay((unsigned long)((200)*(64000000/4000.0)));
 
-        LCD_sendbyte(0b00000001, 0);
-
-        _delay((unsigned long)((200)*(64000000/4000.0)));
+        sendStringSerial4(ADC_getval);
     }
 }

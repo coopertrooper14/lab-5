@@ -24319,11 +24319,11 @@ void LCD_sendstring(char *string)
 
     while(*string != 0){
         LCD_sendbyte(*string++, 1);
-        count++;
+
     }
 
     unsigned int i = 0;
-    for (i=0; i<(count-16); i++) {LCD_scroll();}
+
 }
 
 

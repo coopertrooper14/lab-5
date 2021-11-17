@@ -12,21 +12,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9
 [; ;./ADC.h: 9: unsigned int ADC_getval(void);
 [v _ADC_getval `(ui ~T0 @X0 0 ef ]
-"113 C:\Program Files\Microchip\xc8\v2.32\pic\include\c99\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"22 ./LCD.h
-[; ;./LCD.h: 22: void LCD_sendstring(char *string);
-[v _LCD_sendstring `(v ~T0 @X0 0 ef1`*uc ]
 "26 ./serial.h
 [; ;./serial.h: 26: void sendStringSerial4(char *string);
 [v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
-[v F14184 `(v ~T0 @X0 1 tf1`ul ]
-"203 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC18F-K_DFP/1.4.87/xc8\pic\include\pic18.h
-[v __delay `JF14184 ~T0 @X0 0 e ]
-[p i __delay ]
-"19 ./LCD.h
-[; ;./LCD.h: 19: void LCD_sendbyte(unsigned char Byte, char type);
-[v _LCD_sendbyte `(v ~T0 @X0 0 ef2`uc`uc ]
+"25
+[; ;./serial.h: 25: void sendCharSerial4(char charToSend);
+[v _sendCharSerial4 `(v ~T0 @X0 0 ef1`uc ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
 "3
@@ -2040,68 +2031,42 @@ Version 4.0 HI-TECH Software Intermediate Code
 "16 main.c
 [; ;main.c: 16: unsigned int data;
 [v _data `ui ~T0 @X0 1 e ]
-"17
-[; ;main.c: 17: unsigned int int_part;
-[v _int_part `ui ~T0 @X0 1 e ]
-"18
-[; ;main.c: 18: unsigned int frac_part;
-[v _frac_part `ui ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"20
-[; ;main.c: 20: void main(void) {
+"18
+[; ;main.c: 18: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"22
-[; ;main.c: 22:     LCD_Init();
+"20
+[; ;main.c: 20:     LCD_Init();
 [e ( _LCD_Init ..  ]
-"23
-[; ;main.c: 23:     initUSART4();
+"21
+[; ;main.c: 21:     initUSART4();
 [e ( _initUSART4 ..  ]
-"24
-[; ;main.c: 24:     ADC_init();
+"22
+[; ;main.c: 22:     ADC_init();
 [e ( _ADC_init ..  ]
-"26
-[; ;main.c: 26:     char buf[10];
-[v _buf `uc ~T0 @X0 -> 10 `i a ]
-"36
-[; ;main.c: 36:     while (1) {
+"24
+[; ;main.c: 24:     while (1){
 [e :U 2023 ]
 {
-"38
-[; ;main.c: 38:         int_part=ADC_getval()/77;
-[e = _int_part / ( _ADC_getval ..  -> -> 77 `i `ui ]
-"39
-[; ;main.c: 39:         frac_part=(ADC_getval()*100)/77 - int_part*100;
-[e = _frac_part - / * ( _ADC_getval ..  -> -> 100 `i `ui -> -> 77 `i `ui * _int_part -> -> 100 `i `ui ]
-"40
-[; ;main.c: 40:         sprintf(buf,"%d.%02d",int_part,frac_part);
-[e ( _sprintf (1 , , (. , &U _buf :s 1C _int_part _frac_part ]
-"41
-[; ;main.c: 41:         LCD_sendstring(buf);
-[e ( _LCD_sendstring (1 &U _buf ]
-"42
-[; ;main.c: 42:         sendStringSerial4(buf);
-[e ( _sendStringSerial4 (1 &U _buf ]
-"44
-[; ;main.c: 44:         _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"46
-[; ;main.c: 46:         LCD_sendbyte(0b00000001, 0);
-[e ( _LCD_sendbyte (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"48
-[; ;main.c: 48:         _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"49
-[; ;main.c: 49:     }
+"29
+[; ;main.c: 29:         data = ADC_getval();
+[e = _data ( _ADC_getval ..  ]
+"30
+[; ;main.c: 30:         sendStringSerial4(data);
+[e ( _sendStringSerial4 (1 -> _data `*uc ]
+"31
+[; ;main.c: 31:         sendCharSerial4(data);
+[e ( _sendCharSerial4 (1 -> _data `uc ]
+"32
+[; ;main.c: 32:     }
 }
 [e :U 2022 ]
 [e $U 2023  ]
 [e :U 2024 ]
-"50
-[; ;main.c: 50: }
+"33
+[; ;main.c: 33: }
 [e :UE 2021 ]
 }
-[p f _sprintf 8421508 ]
-[a 1C 37 100 46 37 48 50 100 0 ]

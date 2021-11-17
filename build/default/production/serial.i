@@ -24205,6 +24205,18 @@ char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
 # 3 "serial.c" 2
+# 1 "./LCD.h" 1
+# 17 "./LCD.h"
+void LCD_E_TOG(void);
+void LCD_sendnibble(unsigned char number);
+void LCD_sendbyte(unsigned char Byte, char type);
+void LCD_Init(void);
+void LCD_setline (char line);
+void LCD_sendstring(char *string);
+void LCD_scroll(void);
+void LCD_clear(void);
+void ADC2String(char *buf, unsigned int number);
+# 4 "serial.c" 2
 
 void initUSART4(void) {
 
@@ -24239,6 +24251,11 @@ void sendCharSerial4(char charToSend) {
 
 void sendStringSerial4(char *string){
 
+
+    while(*string != 0){
+        sendCharSerial4(*string++);
+
+    }
 }
 
 

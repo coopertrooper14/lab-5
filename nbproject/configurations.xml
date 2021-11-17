@@ -23,6 +23,8 @@
     <itemPath>main.c</itemPath>
     <itemPath>serial.c</itemPath>
     <itemPath>serial.h</itemPath>
+    <itemPath>ADC.c</itemPath>
+    <itemPath>ADC.h</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>

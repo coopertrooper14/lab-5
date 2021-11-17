@@ -2076,233 +2076,249 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
-"4 serial.c
-[; ;serial.c: 4: void initUSART4(void) {
+"5 serial.c
+[; ;serial.c: 5: void initUSART4(void) {
 [v _initUSART4 `(v ~T0 @X0 1 ef ]
 {
 [e :U _initUSART4 ]
 [f ]
-"8
-[; ;serial.c: 8:     RC0PPS = 0x12;
-[e = _RC0PPS -> -> 18 `i `uc ]
 "9
-[; ;serial.c: 9:     RX4PPS = 0x11;
+[; ;serial.c: 9:     RC0PPS = 0x12;
+[e = _RC0PPS -> -> 18 `i `uc ]
+"10
+[; ;serial.c: 10:     RX4PPS = 0x11;
 [e = _RX4PPS -> -> 17 `i `uc ]
-"11
-[; ;serial.c: 11:     BAUD4CONbits.BRG16 = 0;
-[e = . . _BAUD4CONbits 0 3 -> -> 0 `i `uc ]
 "12
-[; ;serial.c: 12:     TX4STAbits.BRGH = 0;
-[e = . . _TX4STAbits 0 2 -> -> 0 `i `uc ]
+[; ;serial.c: 12:     BAUD4CONbits.BRG16 = 0;
+[e = . . _BAUD4CONbits 0 3 -> -> 0 `i `uc ]
 "13
-[; ;serial.c: 13:     SP4BRGL = 51;
-[e = _SP4BRGL -> -> 51 `i `uc ]
+[; ;serial.c: 13:     TX4STAbits.BRGH = 0;
+[e = . . _TX4STAbits 0 2 -> -> 0 `i `uc ]
 "14
-[; ;serial.c: 14:     SP4BRGH = 0;
+[; ;serial.c: 14:     SP4BRGL = 51;
+[e = _SP4BRGL -> -> 51 `i `uc ]
+"15
+[; ;serial.c: 15:     SP4BRGH = 0;
 [e = _SP4BRGH -> -> 0 `i `uc ]
-"16
-[; ;serial.c: 16:     RC4STAbits.CREN = 1;
-[e = . . _RC4STAbits 0 4 -> -> 1 `i `uc ]
 "17
-[; ;serial.c: 17:     TX4STAbits.TXEN = 1;
-[e = . . _TX4STAbits 0 5 -> -> 1 `i `uc ]
+[; ;serial.c: 17:     RC4STAbits.CREN = 1;
+[e = . . _RC4STAbits 0 4 -> -> 1 `i `uc ]
 "18
-[; ;serial.c: 18:     RC4STAbits.SPEN = 1;
-[e = . . _RC4STAbits 0 7 -> -> 1 `i `uc ]
+[; ;serial.c: 18:     TX4STAbits.TXEN = 1;
+[e = . . _TX4STAbits 0 5 -> -> 1 `i `uc ]
 "19
-[; ;serial.c: 19: }
+[; ;serial.c: 19:     RC4STAbits.SPEN = 1;
+[e = . . _RC4STAbits 0 7 -> -> 1 `i `uc ]
+"20
+[; ;serial.c: 20: }
 [e :UE 2019 ]
 }
-"22
-[; ;serial.c: 22: char getCharSerial4(void) {
+"23
+[; ;serial.c: 23: char getCharSerial4(void) {
 [v _getCharSerial4 `(uc ~T0 @X0 1 ef ]
 {
 [e :U _getCharSerial4 ]
 [f ]
-"23
-[; ;serial.c: 23:     while (!PIR4bits.RC4IF);
+"24
+[; ;serial.c: 24:     while (!PIR4bits.RC4IF);
 [e $U 2021  ]
 [e :U 2022 ]
 [e :U 2021 ]
 [e $ ! != -> . . _PIR4bits 0 3 `i -> 0 `i 2022  ]
 [e :U 2023 ]
-"24
-[; ;serial.c: 24:     return RC4REG;
+"25
+[; ;serial.c: 25:     return RC4REG;
 [e ) -> _RC4REG `uc ]
 [e $UE 2020  ]
-"25
-[; ;serial.c: 25: }
+"26
+[; ;serial.c: 26: }
 [e :UE 2020 ]
 }
-"28
-[; ;serial.c: 28: void sendCharSerial4(char charToSend) {
+"29
+[; ;serial.c: 29: void sendCharSerial4(char charToSend) {
 [v _sendCharSerial4 `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _sendCharSerial4 ]
 [v _charToSend `uc ~T0 @X0 1 r1 ]
 [f ]
-"29
-[; ;serial.c: 29:     while (!PIR4bits.TX4IF);
+"30
+[; ;serial.c: 30:     while (!PIR4bits.TX4IF);
 [e $U 2025  ]
 [e :U 2026 ]
 [e :U 2025 ]
 [e $ ! != -> . . _PIR4bits 0 2 `i -> 0 `i 2026  ]
 [e :U 2027 ]
-"30
-[; ;serial.c: 30:     TX4REG = charToSend;
-[e = _TX4REG -> _charToSend `uc ]
 "31
-[; ;serial.c: 31: }
+[; ;serial.c: 31:     TX4REG = charToSend;
+[e = _TX4REG -> _charToSend `uc ]
+"32
+[; ;serial.c: 32: }
 [e :UE 2024 ]
 }
-"35
-[; ;serial.c: 35: void sendStringSerial4(char *string){
+"36
+[; ;serial.c: 36: void sendStringSerial4(char *string){
 [v _sendStringSerial4 `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _sendStringSerial4 ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-"37
-[; ;serial.c: 37: }
+"39
+[; ;serial.c: 39:     while(*string != 0){
+[e $U 2029  ]
+[e :U 2030 ]
+{
+"40
+[; ;serial.c: 40:         sendCharSerial4(*string++);
+[e ( _sendCharSerial4 (1 *U ++ _string * -> -> 1 `i `x -> -> # *U _string `i `x ]
+"42
+[; ;serial.c: 42:     }
+}
+[e :U 2029 ]
+"39
+[; ;serial.c: 39:     while(*string != 0){
+[e $ != -> *U _string `i -> 0 `i 2030  ]
+[e :U 2031 ]
+"43
+[; ;serial.c: 43: }
 [e :UE 2028 ]
 }
-"44
-[; ;serial.c: 44: char getCharFromRxBuf(void){
+"50
+[; ;serial.c: 50: char getCharFromRxBuf(void){
 [v _getCharFromRxBuf `(uc ~T0 @X0 1 ef ]
 {
 [e :U _getCharFromRxBuf ]
 [f ]
-"45
-[; ;serial.c: 45:     if (RxBufReadCnt>=20) {RxBufReadCnt=0;}
-[e $ ! >= -> _RxBufReadCnt `i -> 20 `i 2030  ]
+"51
+[; ;serial.c: 51:     if (RxBufReadCnt>=20) {RxBufReadCnt=0;}
+[e $ ! >= -> _RxBufReadCnt `i -> 20 `i 2033  ]
 {
 [e = _RxBufReadCnt -> -> 0 `i `uc ]
 }
-[e :U 2030 ]
-"46
-[; ;serial.c: 46:     return EUSART4RXbuf[RxBufReadCnt++];
+[e :U 2033 ]
+"52
+[; ;serial.c: 52:     return EUSART4RXbuf[RxBufReadCnt++];
 [e ) *U + &U _EUSART4RXbuf * -> ++ _RxBufReadCnt -> -> 1 `i `Vuc `ux -> -> # *U &U _EUSART4RXbuf `ui `ux ]
-[e $UE 2029  ]
-"47
-[; ;serial.c: 47: }
-[e :UE 2029 ]
+[e $UE 2032  ]
+"53
+[; ;serial.c: 53: }
+[e :UE 2032 ]
 }
-"50
-[; ;serial.c: 50: void putCharToRxBuf(char byte){
+"56
+[; ;serial.c: 56: void putCharToRxBuf(char byte){
 [v _putCharToRxBuf `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _putCharToRxBuf ]
 [v _byte `uc ~T0 @X0 1 r1 ]
 [f ]
-"51
-[; ;serial.c: 51:     if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
-[e $ ! >= -> _RxBufWriteCnt `i -> 20 `i 2032  ]
+"57
+[; ;serial.c: 57:     if (RxBufWriteCnt>=20) {RxBufWriteCnt=0;}
+[e $ ! >= -> _RxBufWriteCnt `i -> 20 `i 2035  ]
 {
 [e = _RxBufWriteCnt -> -> 0 `i `uc ]
 }
-[e :U 2032 ]
-"52
-[; ;serial.c: 52:     EUSART4RXbuf[RxBufWriteCnt++]=byte;
-[e = *U + &U _EUSART4RXbuf * -> ++ _RxBufWriteCnt -> -> 1 `i `Vuc `ux -> -> # *U &U _EUSART4RXbuf `ui `ux _byte ]
-"53
-[; ;serial.c: 53: }
-[e :UE 2031 ]
-}
+[e :U 2035 ]
 "58
-[; ;serial.c: 58: char isDataInRxBuf (void){
+[; ;serial.c: 58:     EUSART4RXbuf[RxBufWriteCnt++]=byte;
+[e = *U + &U _EUSART4RXbuf * -> ++ _RxBufWriteCnt -> -> 1 `i `Vuc `ux -> -> # *U &U _EUSART4RXbuf `ui `ux _byte ]
+"59
+[; ;serial.c: 59: }
+[e :UE 2034 ]
+}
+"64
+[; ;serial.c: 64: char isDataInRxBuf (void){
 [v _isDataInRxBuf `(uc ~T0 @X0 1 ef ]
 {
 [e :U _isDataInRxBuf ]
 [f ]
-"59
-[; ;serial.c: 59:     return (RxBufWriteCnt!=RxBufReadCnt);
+"65
+[; ;serial.c: 65:     return (RxBufWriteCnt!=RxBufReadCnt);
 [e ) -> -> != -> _RxBufWriteCnt `i -> _RxBufReadCnt `i `i `uc ]
-[e $UE 2033  ]
-"60
-[; ;serial.c: 60: }
-[e :UE 2033 ]
+[e $UE 2036  ]
+"66
+[; ;serial.c: 66: }
+[e :UE 2036 ]
 }
-"64
-[; ;serial.c: 64: char getCharFromTxBuf(void){
+"70
+[; ;serial.c: 70: char getCharFromTxBuf(void){
 [v _getCharFromTxBuf `(uc ~T0 @X0 1 ef ]
 {
 [e :U _getCharFromTxBuf ]
 [f ]
-"65
-[; ;serial.c: 65:     if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
-[e $ ! >= -> _TxBufReadCnt `i -> 60 `i 2035  ]
+"71
+[; ;serial.c: 71:     if (TxBufReadCnt>=60) {TxBufReadCnt=0;}
+[e $ ! >= -> _TxBufReadCnt `i -> 60 `i 2038  ]
 {
 [e = _TxBufReadCnt -> -> 0 `i `uc ]
 }
-[e :U 2035 ]
-"66
-[; ;serial.c: 66:     return EUSART4TXbuf[TxBufReadCnt++];
+[e :U 2038 ]
+"72
+[; ;serial.c: 72:     return EUSART4TXbuf[TxBufReadCnt++];
 [e ) *U + &U _EUSART4TXbuf * -> ++ _TxBufReadCnt -> -> 1 `i `Vuc `ux -> -> # *U &U _EUSART4TXbuf `ui `ux ]
-[e $UE 2034  ]
-"67
-[; ;serial.c: 67: }
-[e :UE 2034 ]
+[e $UE 2037  ]
+"73
+[; ;serial.c: 73: }
+[e :UE 2037 ]
 }
-"70
-[; ;serial.c: 70: void putCharToTxBuf(char byte){
+"76
+[; ;serial.c: 76: void putCharToTxBuf(char byte){
 [v _putCharToTxBuf `(v ~T0 @X0 1 ef1`uc ]
 {
 [e :U _putCharToTxBuf ]
 [v _byte `uc ~T0 @X0 1 r1 ]
 [f ]
-"71
-[; ;serial.c: 71:     if (TxBufWriteCnt>=60) {TxBufWriteCnt=0;}
-[e $ ! >= -> _TxBufWriteCnt `i -> 60 `i 2037  ]
+"77
+[; ;serial.c: 77:     if (TxBufWriteCnt>=60) {TxBufWriteCnt=0;}
+[e $ ! >= -> _TxBufWriteCnt `i -> 60 `i 2040  ]
 {
 [e = _TxBufWriteCnt -> -> 0 `i `uc ]
 }
-[e :U 2037 ]
-"72
-[; ;serial.c: 72:     EUSART4TXbuf[TxBufWriteCnt++]=byte;
-[e = *U + &U _EUSART4TXbuf * -> ++ _TxBufWriteCnt -> -> 1 `i `Vuc `ux -> -> # *U &U _EUSART4TXbuf `ui `ux _byte ]
-"73
-[; ;serial.c: 73: }
-[e :UE 2036 ]
-}
+[e :U 2040 ]
 "78
-[; ;serial.c: 78: char isDataInTxBuf (void){
+[; ;serial.c: 78:     EUSART4TXbuf[TxBufWriteCnt++]=byte;
+[e = *U + &U _EUSART4TXbuf * -> ++ _TxBufWriteCnt -> -> 1 `i `Vuc `ux -> -> # *U &U _EUSART4TXbuf `ui `ux _byte ]
+"79
+[; ;serial.c: 79: }
+[e :UE 2039 ]
+}
+"84
+[; ;serial.c: 84: char isDataInTxBuf (void){
 [v _isDataInTxBuf `(uc ~T0 @X0 1 ef ]
 {
 [e :U _isDataInTxBuf ]
 [f ]
-"79
-[; ;serial.c: 79:     return (TxBufWriteCnt!=TxBufReadCnt);
+"85
+[; ;serial.c: 85:     return (TxBufWriteCnt!=TxBufReadCnt);
 [e ) -> -> != -> _TxBufWriteCnt `i -> _TxBufReadCnt `i `i `uc ]
-[e $UE 2038  ]
-"80
-[; ;serial.c: 80: }
-[e :UE 2038 ]
+[e $UE 2041  ]
+"86
+[; ;serial.c: 86: }
+[e :UE 2041 ]
 }
-"83
-[; ;serial.c: 83: void TxBufferedString(char *string){
+"89
+[; ;serial.c: 89: void TxBufferedString(char *string){
 [v _TxBufferedString `(v ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _TxBufferedString ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
-"85
-[; ;serial.c: 85: }
-[e :UE 2039 ]
+"91
+[; ;serial.c: 91: }
+[e :UE 2042 ]
 }
-"89
-[; ;serial.c: 89: void sendTxBuf(void){
+"95
+[; ;serial.c: 95: void sendTxBuf(void){
 [v _sendTxBuf `(v ~T0 @X0 1 ef ]
 {
 [e :U _sendTxBuf ]
 [f ]
-"90
-[; ;serial.c: 90:     if (isDataInTxBuf()) {PIE4bits.TX4IE=1;}
-[e $ ! != -> ( _isDataInTxBuf ..  `i -> 0 `i 2041  ]
+"96
+[; ;serial.c: 96:     if (isDataInTxBuf()) {PIE4bits.TX4IE=1;}
+[e $ ! != -> ( _isDataInTxBuf ..  `i -> 0 `i 2044  ]
 {
 [e = . . _PIE4bits 0 2 -> -> 1 `i `uc ]
 }
-[e :U 2041 ]
-"91
-[; ;serial.c: 91: }
-[e :UE 2040 ]
+[e :U 2044 ]
+"97
+[; ;serial.c: 97: }
+[e :UE 2043 ]
 }

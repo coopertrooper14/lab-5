@@ -24384,8 +24384,6 @@ void sendTxBuf(void);
 
 
 unsigned int data;
-unsigned int int_part;
-unsigned int frac_part;
 
 void main(void) {
 
@@ -24393,20 +24391,13 @@ void main(void) {
     initUSART4();
     ADC_init();
 
-    char buf[10];
-# 36 "main.c"
-    while (1) {
+    while (1){
 
-        int_part=ADC_getval()/77;
-        frac_part=(ADC_getval()*100)/77 - int_part*100;
-        sprintf(buf,"%d.%02d",int_part,frac_part);
-        LCD_sendstring(buf);
-        sendStringSerial4(buf);
 
-        _delay((unsigned long)((200)*(64000000/4000.0)));
 
-        LCD_sendbyte(0b00000001, 0);
 
-        _delay((unsigned long)((200)*(64000000/4000.0)));
+        data = ADC_getval();
+        sendStringSerial4(data);
+        sendCharSerial4(data);
     }
 }
