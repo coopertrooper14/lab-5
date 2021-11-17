@@ -19,7 +19,7 @@ unsigned int frac_part;
 
 void main(void) {
     
-    LCD_Init();  //Initialise LCD screen
+    LCD_Init();  //Initialise LCD scree
     initUSART4();  //Initialise serial monitor
     ADC_init();  //Initialise ADC
     
